@@ -40,3 +40,15 @@ class users(AbstractBaseUser, PermissionsMixin, Create, Update):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
+        
+    
+class ContactUs(Create, Update):
+    email = models.EmailField(_('ایمیل'), max_length=255, blank=True, null=True)
+    mobile_phone = models.CharField(_('شماره موبایل'), max_length=11, blank=True, null=True)
+    description =models.TextField(_('توضحات'))
+    location = models.CharField(_('محل شعبه'), max_length=255, blank=True, null=True)
+        
+    class Meta:
+        db_table = 'contact_us'
+        verbose_name = _('تماس با ما')
+        verbose_name_plural = _('تماس با ما')
