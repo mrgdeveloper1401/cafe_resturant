@@ -38,6 +38,9 @@ CREATEAPP = [
     'core.apps.CoreConfig',
     'category.apps.CategoryConfig',
     'images.apps.ImagesConfig',
+    'comment.apps.CommentConfig',
+    'food.apps.FoodConfig',
+    'pannel.apps.PannelConfig',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',

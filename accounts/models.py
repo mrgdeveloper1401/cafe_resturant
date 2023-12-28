@@ -1,3 +1,4 @@
+from datetime import timedelta, timezone
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.mail import send_mail
@@ -25,7 +26,8 @@ class users(AbstractBaseUser, PermissionsMixin, Create, Update):
         verbose_name = _("user")
         verbose_name_plural = _("users")
         db_table = 'user'
-        
+
+    @property
     def get_full_name(self):
         """
         Return the first_name plus the last_name, with a space in between.
@@ -40,7 +42,13 @@ class users(AbstractBaseUser, PermissionsMixin, Create, Update):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
-        
+    
+    # TODO
+    @property
+    def membership(self):
+        expiration_date = self.create_at
+        if self.is_active:
+            return self.is_active and timezone.now() <= expiration_date
     
 class ContactUs(Create, Update):
     email = models.EmailField(_('ایمیل'), max_length=255, blank=True, null=True)

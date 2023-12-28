@@ -20,7 +20,7 @@ class FoodAdmin(admin.ModelAdmin):
 
 @admin.register(FoodPrice)
 class FoodPriceAdmin(admin.ModelAdmin):
-    list_editable = ('buy_price','sell_price', 'discount', 'final_price')
+    list_display = ('buy_price','sell_price', 'discount', 'final_price')
     list_filter = ('discount', 'is_active', 'create_at', 'update_at')
     list_per_page = 20
     date_hierarchy = 'create_at'
