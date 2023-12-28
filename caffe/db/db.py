@@ -9,4 +9,3 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-print('path', BASE_DIR)

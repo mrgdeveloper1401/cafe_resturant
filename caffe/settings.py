@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 CREATEAPP = [
     'accounts.apps.AccountsConfig',
     'core.apps.CoreConfig',
+    'category.apps.CategoryConfig',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
