@@ -37,6 +37,7 @@ CREATEAPP = [
     'accounts.apps.AccountsConfig',
     'core.apps.CoreConfig',
     'category.apps.CategoryConfig',
+    'images.apps.ImagesConfig',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'coupon_management',
     *CREATEAPP
 ]
 
