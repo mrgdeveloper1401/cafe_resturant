@@ -1,0 +1,35 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+    <title>sign in</title>
+{% endblock title %}
+
+{% block content %}
+<section class="login-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="title">ورود</h3>
+                <div class="theme-card">
+                    <form class="theme-form" method='POST' action=''>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="text">شماره همراه</label>
+                            <input id='text' type="text" name='mobile_phone' class="form-control" placeholder="شماره همراه" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">رمز عبور</label>
+                            <input id='password' type="password" name='password' class="form-control" placeholder="رمز عبور را وارد نمایید" required="">
+                            <button type='submit' class="btn btn-solid w-auto" name='login'>ورود</button>
+                </div>
+            </div>
+            <div class="col-lg-6 right-login">
+                <h3 class="title">کاربر جدید</h3>
+                <div class="theme-card authentication-right">
+                    <h6 class="title-font">ساخت اکانت جدید</h6>
+                    <p>برای یک حساب کاربری رایگان در فروشگاه ما ثبت نام کنید. ثبت نام سریع و آسان است. این امکان را به شما می دهد تا بتوانید از فروشگاه ما سفارش دهید. برای شروع خرید روی ثبت نام کلیک کنید.</p><a href="{% url "accounts:signup" %}" class="btn btn-solid">ساخت حساب کاربری</a></div>
+            </div>
+        </div>
+    </div>
+</section
+{% endblock content %}

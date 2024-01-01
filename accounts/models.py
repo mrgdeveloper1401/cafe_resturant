@@ -60,3 +60,19 @@ class ContactUs(Create, Update):
         db_table = 'contact_us'
         verbose_name = _('تماس با ما')
         verbose_name_plural = _('تماس با ما')
+
+
+# model send code for users
+class OtpCode(models.Model):
+    mobile_phone = models.CharField(_('شماره موبایل'), max_length=11, unique=True)
+    code = models.PositiveSmallIntegerField(default=0)
+    create_code = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self) -> str:
+        return f'{self.mobile_phone} - {self.code} - {self.create_code}'
+    
+    class Meta:
+        db_table = 'otp_code'
+        verbose_name = _('کد تایید')
+        verbose_name_plural = _('کد تایید')
+        

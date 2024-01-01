@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+    <title>تایید شماره حساب</title>
+{% endblock title %}
+
+{% block content %}
+<section class="register-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="title pt-0">تایید اکانت</h3>
+                <div class="theme-card">
+                    <form class="theme-form" method='POST' action=''>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="text">کد</label>
+                                <input type="text" class="form-control" name='code' placeholder="وارد کردن کد ارسال شده به تلفن همراه">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
