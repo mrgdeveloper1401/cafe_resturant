@@ -23,8 +23,8 @@ class users(AbstractBaseUser, PermissionsMixin, Create, Update):
     
     
     class Meta:
-        verbose_name = _("user")
-        verbose_name_plural = _("users")
+        verbose_name = _("کاربر")
+        verbose_name_plural = _("کاربران")
         db_table = 'user'
 
     @property
@@ -49,17 +49,7 @@ class users(AbstractBaseUser, PermissionsMixin, Create, Update):
         expiration_date = self.create_at
         if self.is_active:
             return self.is_active and timezone.now() <= expiration_date
-    
-class ContactUs(Create, Update):
-    email = models.EmailField(_('ایمیل'), max_length=255, blank=True, null=True)
-    mobile_phone = models.CharField(_('شماره موبایل'), max_length=11, blank=True, null=True)
-    description =models.TextField(_('توضحات'))
-    location = models.CharField(_('محل شعبه'), max_length=255, blank=True, null=True)
-        
-    class Meta:
-        db_table = 'contact_us'
-        verbose_name = _('تماس با ما')
-        verbose_name_plural = _('تماس با ما')
+
 
 
 # model send code for users
@@ -75,4 +65,21 @@ class OtpCode(models.Model):
         db_table = 'otp_code'
         verbose_name = _('کد تایید')
         verbose_name_plural = _('کد تایید')
-        
+
+
+class UserAddress(Create, Update):
+    user = models.ForeignKey(users, on_delete=models.PROTECT, related_name='user_address', verbose_name=_('ادرس کاربر'))
+    title = models.CharField(_('عنوان ادرس'), max_length=100, blank=True, null=True)
+    address = models.TextField(_('آدرس'))
+    postal_code = models.CharField(_('کد پستی'), max_length=11, unique=True)
+    mobile_phone = models.CharField(_("موبایل"), max_length=11, unique=True)
+    # TODO
+    # location = models.GenericIPAddressField()
+    
+    def __str__(self) -> str:
+        return self.address
+    
+    class Meta:
+        db_table = 'user_address'
+        verbose_name = _('آدرس')
+        verbose_name_plural = _('آدرس ها')

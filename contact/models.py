@@ -17,3 +17,15 @@ class Contact(Create, Update):
         db_table = 'contact'
         verbose_name = _('contact')
         verbose_name_plural = _('contacts')
+
+
+class ContactUs(Create, Update):
+    email = models.EmailField(_('ایمیل'), max_length=255, blank=True, null=True)
+    mobile_phone = models.CharField(_('شماره موبایل'), max_length=11, blank=True, null=True)
+    description =models.TextField(_('توضحات'))
+    location = models.CharField(_('محل شعبه'), max_length=255, blank=True, null=True)
+        
+    class Meta:
+        db_table = 'contact_us'
+        verbose_name = _('تماس با ما')
+        verbose_name_plural = _('تماس با ما')

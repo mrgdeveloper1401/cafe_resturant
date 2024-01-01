@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import users, ContactUs, OtpCode
+from .models import users, OtpCode, UserAddress
 
 @admin.register(users)
 class UserAdmin(BaseUserAdmin):
@@ -42,17 +42,18 @@ class UserAdmin(BaseUserAdmin):
     readonly_fields = ('create_at', 'update_at', 'last_login', 'is_active', 'is_staff', 'is_superuser')
 
 
-@admin.register(ContactUs)
-class ContactUsAdmin(admin.ModelAdmin):
-    list_display = ('email','mobile_phone', 'description', 'location')
-    search_fields = ('email','mobile_phone', )
-    list_filter = ('create_at', 'update_at')
-    list_per_page = 20
-    date_hierarchy = 'create_at'
-
-
 @admin.register(OtpCode)
 class OtpCodeAdmin(admin.ModelAdmin):
     list_display = ('mobile_phone', 'code', 'create_code')
     list_filter = ('create_code',)
     search_fields = ('mobile_phone', 'code')
+
+
+@admin.register(UserAddress)
+class UserAddressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'title', 'address', 'postal_code','mobile_phone')
+    list_filter = ('create_at', 'update_at')
+    date_hierarchy = 'create_at'
+    list_per_page = 30
+    readonly_fields = ('create_at', 'update_at')
+    raw_id_fields = ('user',)

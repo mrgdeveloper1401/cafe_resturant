@@ -31,5 +31,8 @@ class Images(Create, Update):
             raise MultipleObjectsReturned('Image is elready exists')
         return super().save()
     
+    def __str__(self) -> str:
+        return self.alter_image
+    
     class Meta:
         db_table = 'images'

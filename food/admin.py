@@ -16,6 +16,7 @@ class FoodAdmin(admin.ModelAdmin):
     date_hierarchy = 'create_at'
     list_per_page = 20
     list_editable = ('is_active', 'is_get_out')
+    raw_id_fields = ('image',)
 
 
 @admin.register(FoodPrice)
