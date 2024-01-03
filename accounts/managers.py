@@ -7,6 +7,7 @@ class UserManagers(BaseUserManager):
         if not mobile_phone:
             raise ValueError('Users must have a mobile phone number')
         user = self.model(mobile_phone=mobile_phone)
+        user.is_active = True
         user.set_password(password)
         user.save(using=self._db)
         return user

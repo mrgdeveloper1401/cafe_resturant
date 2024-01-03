@@ -55,7 +55,7 @@ class users(AbstractBaseUser, PermissionsMixin, Create, Update):
 # model send code for users
 class OtpCode(models.Model):
     mobile_phone = models.CharField(_('شماره موبایل'), max_length=11, unique=True)
-    code = models.PositiveSmallIntegerField(default=0)
+    code = models.PositiveIntegerField()
     create_code = models.DateTimeField(auto_now_add=True)
     
     def __str__(self) -> str:

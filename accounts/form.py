@@ -1,13 +1,28 @@
 from django import forms
 from .models import users
+from django.utils.translation import gettext_lazy as _
 
 
 class UserSignupForm(forms.ModelForm):
-    password2 =  forms.CharField(max_length=255, min_length=8, widget=forms.PasswordInput())
     class Meta:
         model = users
-        fields = ('mobile_phone', 'password', 'password2')
-
+        fields = ('mobile_phone', 'password')
+        
+        widgets = {
+            'mobile_phone': forms.TextInput(attrs={'class':'form-control', 'placeholder':'شماره همراه: 09171234567'}),
+            'password': forms.PasswordInput(attrs={'class':'form-control', 'placeholder': 'رمز عبور: 12345678'}),
+        }
+        
+        lable = {
+            'passwprd': _('رمز عبور'),
+        }
+        
+        error_messages = {
+            'mobile_phone': {
+                'unique': 'شماره موبایل قبلا وجود دارد'
+            }
+        }
+        
 
 class Loginform(forms.Form):
     mobile_phone = forms.CharField(max_length=11,
