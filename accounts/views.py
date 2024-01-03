@@ -8,7 +8,7 @@ from random import randint
 from caffe.utils import send_otp_code
 from .models import OtpCode
 from datetime import timedelta
-
+from django.utils import timezone
 
 
 class UserSignupView(View):
@@ -52,19 +52,23 @@ class AcceptUserView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            print(int(cd['code']) == otp_code.code)
+            after_time = timezone.now() + timedelta(seconds=120)
             if int(cd['code']) == otp_code.code:
-                users.objects.create_user(
-                    mobile_phone=user_session['mobile_phone'],
-                    password=user_session['password']
-                )
-                messages.success(request, 'حساب شما با موفقیت ساخته شد لطفا برای  ادامه پروفایل خود رو تکمیل نمایید', 'success')
-                otp_code.delete()
-                del user_session
-                return redirect('accounts:login')
+                if timezone.now() < after_time:
+                    users.objects.create_user(
+                        mobile_phone=user_session['mobile_phone'],
+                        password=user_session['password']
+                    )
+                    messages.success(request, 'حساب شما با موفقیت ساخته شد لطفا برای  ادامه پروفایل خود رو تکمیل نمایید', 'success')
+                    otp_code.delete()
+                    del user_session
+                    return redirect('accounts:login')
+                else:
+                    messages.error(request, 'مدت زمان برای تایید کد شما گذشته هست لطفا دوباره درخواست بدهید')
+                    return redirect('accounts:signup')
             else:
-                messages.error(request, 'کد تایید شما اشتباه است', 'danger')
-                return render(request, self.template_name, {'form': form})
+                    messages.error(request, 'کد تایید شما اشتباه است', 'danger')
+                    return render(request, self.template_name, {'form': form})
         return render(request, self.template_name, {'form': form})
         
 
