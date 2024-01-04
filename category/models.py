@@ -10,7 +10,7 @@ class Category(Create, Update, MPTTModel):
     slug = models.SlugField(_('اسلاگ'), allow_unicode=True, unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     is_active = models.BooleanField(_('فعال'), default=True)
-    
+    image = models.ForeignKey('images.Images', on_delete=models.PROTECT, related_name='category_images', blank=True, null=True)
     objects = PublicCategory()
     
     def __str__(self) -> str:

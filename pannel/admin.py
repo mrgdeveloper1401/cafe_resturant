@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Pannel, Sciol, SciolValues
-from food.models import Food, FoodPrice
+from food.models import Food
 
 
 class FoodInline(admin.TabularInline):
@@ -13,14 +13,9 @@ class SciolValueInline(admin.TabularInline):
     extra = 0
 
 
-class FoodPriceInline(admin.TabularInline):
-    model = FoodPrice
-    extra = 0
-
-
 @admin.register(Pannel)
 class PannelAdmin(admin.ModelAdmin):
-    inlines = (FoodInline, FoodPriceInline, SciolValueInline)
+    inlines = (FoodInline, SciolValueInline)
     raw_id_fields = ('user',)
     list_filter = ('is_active', 'create_at', 'update_at')
     list_display = ('user', 'pannel_name', 'is_active', 'create_at', 'update_at')

@@ -9,7 +9,7 @@ class Images(Create, Update):
     image = models.ImageField(_('عکس'), width_field='width', height_field='height', upload_to='products/images/%Y/%m/%d')
     image_hash = models.CharField(_('هش'), max_length=40, unique=True, blank=True, null=True)
     image_size = models.PositiveIntegerField(_('حجم عکس'), default=0)
-    alter_image = models.CharField(_('متن عکس'), max_length=100, blank=True, null=True)
+    alter_image = models.CharField(_('متن عکس'), max_length=100)
     width = models.PositiveIntegerField(_('عرض'), default=0)
     height = models.PositiveIntegerField(_('ارتفاع'), default=0)
     focal_point_x = models.PositiveIntegerField(blank=True, null=True)

@@ -1,0 +1,80 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+    <title>صفحه اصلی</title>
+{% endblock title %}
+
+{% block content %}
+<section class=" tab-layout1 section-b-space">
+    <div class="theme-tab">
+
+        <ul class="tabs border-top-0">
+            <li class="current">
+                <a href="tab-1.html">دارای رتبه برتر</a>
+            </li>
+            <li class="">
+                <a href="tab-3.html">۳۰٪ تخفیف</a>
+            </li>
+            <li class="">
+                <a href="tab-4.html">پرفروش ترین</a>
+            </li>
+            <li class="">
+                <a href="tab-5.html">محبوبترین</a>
+            </li>
+        </ul>
+
+        <div class="tab-content-cls ratio_square">
+            <div id="tab-1" class="tab-content active default" style="display: block;">
+                <div class="container shadow-cls">
+                    <div class="drop-shadow">
+                        <div class="left-shadow">
+                            <img src="images/left.png" alt="" class=" img-fluid">
+                        </div>
+                        <div class="right-shadow">
+                            <img src="images/right.png" alt="" class=" img-fluid">
+                        </div>
+                    </div>
+                    <div class="row border-row1 m-0">
+
+                        {% for f in foods %}
+                        <div class="col-lg-2 col-sm-4 col-6 p-0">
+                            <div class="product-box product-select-box">
+                                <div class="img-block">
+                                    <a href="{{ f.get_absolute_url }}" class="bg-size" style="background-image: url(&quot;images/layout-12-6.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;"><img src="{{ f.image.image.url }}" class=" img-fluid bg-img" alt="" style="display: none;"></a>
+                                    <div class="cart-details">
+                                        <button title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></button>
+                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"><i class="ti-search" aria-hidden="true"></i></a>
+                                        <a href="compare.html" title="Compare"><i class="ti-reload" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <a href="#"><h6>{{ f.food_name }}</h6></a>
+                                    <h5>{{ f.sell_price }} تومان</h5>
+                                </div>
+                                {% comment %} <div class="select-dropdown">
+                                    <select>
+                                        <option>وزن 1000 گرم</option>
+                                    </select>
+                                </div> {% endcomment %}
+                                <div class="qty-add-box">
+                                    <div class="qty-box">
+                                        <label>تعداد:</label>
+                                        <div class="input-group">
+                                            <input type="number" name="quantity" class="form-control input-number" value="1">
+                                        </div>
+                                        <button title="buy now"> خرید<i class="ti-shopping-cart"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from core.models import Create, Update
-from food.managers import ActiveModel
+
 
 class Sciol(Create, Update):
     sciol_name = models.CharField(_('نام شبکه مجازی'), max_length=155)
@@ -22,7 +22,7 @@ class SciolValues(Create, Update):
     description = models.TextField(_('توضیح'), blank=True, null=True)
     is_active = models.BooleanField(_('فعال'), default=True)
 
-    objects = ActiveModel()
+    # objects = ActiveModel()
 
     def __str__(self) -> str:
         return self.value
