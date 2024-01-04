@@ -1,0 +1,77 @@
+<header class="header-2">
+    <div class="mobile-fix-header">
+    </div>
+    <div class="container">
+        <div class="row header-content">
+            <div class="col-12">
+                <div class="content-header justify-content-center">
+                    <div class="right-section">
+                        <div class="lower-section">
+                            <div class="nav-icon">
+                                <ul>
+                                    <li class="onhover-div setting-icon">
+                                        <div><img src="images/settings.png" class=" img-fluid setting-img" alt="">
+                                            <i class="fa fa-sliders mobile-icon"></i>
+                                        </div>
+                                    </li>
+                                    <li class="onhover-div pe-0 search-3">
+                                        <div onclick="openSearch()">
+                                            <i class="ti-search mobile-icon-search mobile-icon"></i>
+                                        </div>
+                                        <div id="search-overlay" class="search-overlay">
+                                            <div>
+                                                <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+                                                <div class="overlay-content">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-xl-12">
+                                                                <form>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="جستجو محصول">
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="onhover-div wishlist-icon" onclick="openWishlist()">
+                                        <img src="images/wishlist.png" alt="" class="wishlist-img">
+                                        <i class="ti-heart mobile-icon"></i>
+                                        <div class="wishlist icon-detail">
+                                            <h6 class="up-cls"><span>۳ آیتم</span></h6>
+                                            <h6><a href="#">لیست علاقه</a></h6>
+                                        </div>
+                                    </li>
+                                    <li class="onhover-div user-icon" onclick="openAccount()">
+                                        <img src="images/user.png" alt="" class="user-img">
+                                        <i class="ti-user mobile-icon"></i>
+                                        <div class="wishlist icon-detail">
+                                            {% if request.user.is_authenticated %}
+                                            <h6 class='up-cls'><a>خروج از حساب {{ request.user }}</a></h6>
+                                            {% else %}
+                                            <h6 class="up-cls"><span>حساب من</span></h6>
+                                            <h6><a href="{% url "accounts:login" %}">ورود/ثبت نام</a></h6>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                    <li class="onhover-div cart-icon" onclick="openCart()">
+                                        <img src="images/layout-12-cart.png" alt="" class="cart-image">
+                                        <i class="ti-shopping-cart mobile-icon"></i>
+                                        <div class="cart  icon-detail">
+                                            <h6 class="up-cls"><span>۳ آیتم</span></h6>
+                                            <h6><a href="#">سبد من</a></h6>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

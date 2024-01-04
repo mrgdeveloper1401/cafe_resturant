@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'coupon_management',
+    # 'storages',
     *CREATEAPP
 ]
 
@@ -135,3 +136,42 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # user
 AUTH_USER_MODEL = 'accounts.users'
+
+
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "storages.backends.s3.S3Storage",
+#         "OPTIONS": {
+#             'AWS_ACCESS_KEY_ID': '4e60ba7e-63b9-489f-b054-a86c3bba8157',
+#             'AWS_SECRET_ACCESS_KEY': 'a1aea485118bcc0d8b1c6eca09fe4fe75012d24e6cda712692976fcfe752118d',
+#             'AWS_S3_ENDPOINT_URL': 's3.ir-tbz-sh1.arvanstorage.ir',
+#             'AWS_STORAGE_BUCKET_NAME': 'reser-django-food',
+            
+             
+
+#         },
+#     }
+# }
+
+
+# # access key arvancloude
+# AWS_ACCESS_KEY_ID = '4e60ba7e-63b9-489f-b054-a86c3bba8157'
+
+# # secret key arvancloude
+# AWS_SECRET_ACCESS_KEY = 'a1aea485118bcc0d8b1c6eca09fe4fe75012d24e6cda712692976fcfe752118d'
+
+# # endpoint url
+# AWS_S3_ENDPOINT_URL = 's3.ir-tbz-sh1.arvanstorage.ir'
+
+# # bucket name
+# AWS_STORAGE_BUCKET_NAME = 'reser-django-food'
+
+# # service name
+# AWS_SERVICE_NAME = 's3'
+
+# # Replace similar files
+# AWS_S3_FILE_OVERWRITE = False
+
+# # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# STORAGES = {}
