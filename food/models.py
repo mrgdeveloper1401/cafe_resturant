@@ -53,31 +53,3 @@ class Food(Create, Update):
         db_table = 'food'
         verbose_name = _('غذا')
         verbose_name_plural = _('غذاها')
-
-
-# class FoodAttribute(Create, Update):
-#     attribute = models.CharField(_('attribute'), max_length=100)
-#     food = models.ForeignKey(Food, on_delete=models.PROTECT, related_name='food_attributes')
-    
-#     def __str__(self) -> str:
-#         return self.attribute
-    
-#     class Meta:
-#         db_table = 'food_attributes'
-#         verbose_name = _('attribute')
-#         verbose_name_plural = _('attributes')
-
-
-# class FoodAttributeValues(Create, Update):
-#     value = models.CharField(_('value'), max_length=100)
-#     food_attribute_value_char = models.ForeignKey(FoodAttribute, on_delete=models.PROTECT, related_name='food_attribute_values')
-#     food_attribute_value_int = models.PositiveIntegerField(blank=True, null=True)
-#     food = models.ForeignKey(Food, on_delete=models.PROTECT, related_name='food_attribute_values')
-    
-#     def __str__(self) -> str:
-#         return self.value
-    
-#     class Meta:
-#         db_table = 'food_attribute_values'
-#         verbose_name = _('value')
-#         verbose_name_plural = _('values')

@@ -33,10 +33,11 @@
 
 </head>
 <body class='rtl'>
-    {% comment %} include messages {% endcomment %}
     {% include "include/header.html" %}
     {% include "base/messages.html" %}
+
     {% block content %}{% endblock content %}
+    {% include "include/footer.html" %}
 
     <!-- loader start -->
     <div class="loader-wrapper">
@@ -46,6 +47,7 @@
         </div>
     </div>
     <!-- loader end -->
+
 
     <!-- latest jquery-->
     <script src="{% static "js/jquery-3.3.1.min.js" %}" ></script>

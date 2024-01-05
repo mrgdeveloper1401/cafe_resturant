@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.contrib import messages
 from .forms import ContactForm
+from .models import Contact
 
 
 class ContactView(View):
@@ -18,3 +19,9 @@ class ContactView(View):
             messages.success(request, 'Your message has been sent', 'success')
             return redirect('contacts:contact')
         return render(request, self.template_name, {'form': form})
+
+
+class ContactToUs(View):
+    def get(self, request):
+        contact_to_us = Contact.objects.filter(is_active=True)
+        return render(request, 'contact/contact_to_us.html', {'contact_to_us': contact_to_us})
