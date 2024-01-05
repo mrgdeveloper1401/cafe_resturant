@@ -22,4 +22,4 @@ class ProductDetailsView(View):
 class CategoryView(View):
     def get(self, request):
         category = Category.objects.filter(is_active=True)
-        return render(request, 'category/category.html', {'category': category})
+        return render(request, 'food/category.html', {'category': category})

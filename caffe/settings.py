@@ -41,6 +41,7 @@ CREATEAPP = [
     'food.apps.FoodConfig',
     'pannel.apps.PannelConfig',
     'contact.apps.ContactConfig',
+    'blog.apps.BlogConfig',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
