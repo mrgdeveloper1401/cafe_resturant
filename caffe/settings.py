@@ -36,7 +36,6 @@ ALLOWED_HOSTS = []
 CREATEAPP = [
     'accounts.apps.AccountsConfig',
     'core.apps.CoreConfig',
-    'category.apps.CategoryConfig',
     'images.apps.ImagesConfig',
     'comment.apps.CommentConfig',
     'food.apps.FoodConfig',

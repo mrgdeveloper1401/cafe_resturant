@@ -3,10 +3,27 @@ from django.urls import reverse_lazy
 from core.models import Create, Update
 from django.utils.translation import gettext_lazy as _
 from food.managers import ActiveManager, AvailableManager
+from mptt.models import MPTTModel, TreeForeignKey
+from core.models import Create, Update
+
+class Category(Create, Update, MPTTModel):
+    title = models.CharField(_('عنوان'), max_length=100, db_index=True)
+    slug = models.SlugField(_('اسلاگ'), allow_unicode=True, unique=True)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    is_active = models.BooleanField(_('فعال'), default=True)
+    image = models.ForeignKey('images.Images', on_delete=models.PROTECT, related_name='category_images', blank=True, null=True)
+    
+    def __str__(self) -> str:
+        return self.title
+    
+    class Meta:
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
+        db_table = 'category'
 
 
 class Food(Create, Update):
-    category = models.ForeignKey('category.Category', on_delete=models.PROTECT, related_name='category_food')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='category_food')
     food_name = models.CharField(_('نام غذا'), max_length=100)
     slug = models.SlugField(_('slug'), max_length=100, unique=True, allow_unicode=True)
     food_number = models.PositiveSmallIntegerField(_('تعداد غذاهای موجود'), default=0)
