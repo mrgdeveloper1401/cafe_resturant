@@ -28,7 +28,7 @@
                                     </li>
                                     <li class="onhover-div user-icon" onclick="openAccount()">
                                         <img src="{% static "images/user.png" %}" alt class="user-img">
-                                        <i class="ti-user mobile-icon"></i>
+                                        <a href='{% url "accounts:profile" request.user.id %}'><i class="ti-user mobile-icon"></i></a>
                                         <div class="wishlist icon-detail">
                                             {% if request.user.is_authenticated %}
                                             <h6 class="up-cls">سلام {{ request.user }}<span>حساب من</span></h6>

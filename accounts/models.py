@@ -14,7 +14,8 @@ class users(AbstractBaseUser, PermissionsMixin, Create, Update):
     mobile_phone = models.CharField(_('شماره موبایل'), max_length=11, unique=True)
     is_active = models.BooleanField(_('کاربر فعال'), default=False, editable=False)
     is_staff = models.BooleanField(_('دسترسی کارمندی'), default=False, editable=False)
-    
+    bio = models.TextField(_('درباره خودت'), blank=True, null=True)
+    address = models.TextField(_('آدرس کامل'), blank=True, null=True)
     objects = UserManagers()
     
     EMAIL_FIELD = "email"

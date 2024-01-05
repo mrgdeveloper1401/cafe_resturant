@@ -85,5 +85,18 @@
             document.getElementById("search-overlay").style.display = "none";
         }
     </script>
+
+    <!-- در قسمت head یا footer فایل های HTML -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var messages = document.getElementsByClassName('alert');
+                for (var i = 0; i < messages.length; i++) {
+                    messages[i].style.display = 'none';
+                }
+            }, 10000); 
+        });
+    </script>
+
 </body>
 </html>

@@ -7,7 +7,7 @@ from .models import users, OtpCode, UserAddress
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {"fields": ("mobile_phone", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "email")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "email", 'address', 'bio')}),
         (
             _("Permissions"),
             {

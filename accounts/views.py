@@ -1,14 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views import View
 from .models import users
-from .form import UserSignupForm, Loginform, AcceptUserForm
+from .form import UserSignupForm, Loginform, AcceptUserForm, ProfileForm
 from random import randint
 from caffe.utils import send_otp_code
 from .models import OtpCode
 from datetime import timedelta
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class UserSignupView(View):
@@ -99,3 +100,24 @@ class UserLoginView(View):
                 return redirect('food:home')
             messages.error(request, 'mobile phone or password is incorrect', 'error')
         return render(request, self.template_name, {'form': form})
+
+
+class ProfileView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        profile = get_object_or_404(users, pk=kwargs['pk'])
+        return render(request, 'accounts/profile.html', {'profile': profile})
+
+
+class ProfileEditView(LoginRequiredMixin, View):
+    form_class = ProfileForm
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(instance=request.user)
+        return render(request, 'accounts/profile_edit.html', {'profile': form})
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'successfully updated','success')
+            return redirect('accounts:profile', pk=request.user.id)
+        return render(request, 'accounts/profile_edit.html', {'profile': form})
