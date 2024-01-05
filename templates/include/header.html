@@ -8,6 +8,11 @@
                 <div class="content-header">
                     <div class="left-section">
                         <div class="header-bottom">
+                            <div class="logo">
+                                <a href="{% url "food:home" %}">
+                                    <img src="{% static "images/logo.png" %}" alt="logo">
+                                </a>
+                            </div>
                             <div class="search-bar">
                                 <input class="search__input" type="text" placeholder="جستجو محصول">
                                 <div class="search-icon "></div>
@@ -18,25 +23,19 @@
                         <div class="lower-section">
                             <div class="nav-icon">
                                 <ul>
-                                    <li class="onhover-div wishlist-icon" onclick="openWishlist()">
-                                        <img src="{% static "images/wishlist.png" %}" alt class="wishlist-img">
-                                        <i class="ti-heart mobile-icon"></i>
-                                        <div class="wishlist icon-detail">
-                                            <h6 class="up-cls"><span>۳ آیتم</span></h6>
-                                            <h6><a href="#">لیست علاقه</a></h6>
-                                        </div>
-                                    </li>
-                                    <li class="onhover-div user-icon" onclick="openAccount()">
-                                        <img src="{% static "images/user.png" %}" alt class="user-img">
-                                        <a href='{% url "accounts:profile" request.user.id %}'><i class="ti-user mobile-icon"></i></a>
-                                        <div class="wishlist icon-detail">
-                                            {% if request.user.is_authenticated %}
-                                            <h6 class="up-cls">سلام {{ request.user }}<span>حساب من</span></h6>
-                                            {% else %}
-                                            <h6><a href="{% url "accounts:login" %}">ورود/ثبت نام</a></h6>
-                                            {% endif %}
-                                        </div>
-                                    </li>
+                                    <a href='{% url "accounts:profile" request.user.id %}'>
+                                        <li class="onhover-div user-icon">
+                                            <img src="{% static "images/user.png" %}" alt class="user-img">
+                                        <i class="ti-user mobile-icon"></i>
+                                            <div class="wishlist icon-detail">
+                                                {% if request.user.is_authenticated %}
+                                                <h6 class="up-cls">سلام {{ request.user }}<span></span></h6>
+                                                {% else %}
+                                                <h6><a href="{% url "accounts:login" %}">ورود/ثبت نام</a></h6>
+                                                {% endif %}
+                                            </div>
+                                        </li>
+                                    </a>
                                     <li class="onhover-div cart-icon" onclick="openCart()">
                                         <img src="{% static "images/layout-12-cart.png" %}" alt class="cart-image">
                                         <i class="ti-shopping-cart mobile-icon"></i>
