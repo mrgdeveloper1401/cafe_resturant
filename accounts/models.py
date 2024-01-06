@@ -16,6 +16,7 @@ class User(AbstractBaseUser, PermissionsMixin, Create, Update):
     is_staff = models.BooleanField(_('دسترسی کارمندی'), default=False, editable=False)
     bio = models.TextField(_('درباره خودت'), blank=True, null=True)
     address = models.TextField(_('آدرس کامل'), blank=True, null=True)
+    
     objects = UserManagers()
     
     EMAIL_FIELD = "email"
@@ -74,6 +75,7 @@ class UserAddress(Create, Update):
     address = models.TextField(_('آدرس'))
     postal_code = models.CharField(_('کد پستی'), max_length=11, unique=True)
     mobile_phone = models.CharField(_("موبایل"), max_length=11, unique=True)
+    nation_code = models.CharField(_('کد ملی'), max_length=11, blank=True, null=True, unique=True)
     # TODO
     # location = models.GenericIPAddressField()
     

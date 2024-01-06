@@ -82,12 +82,13 @@ class UserLoginView(View):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('all_products:home')
+            return redirect('products:home')
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
+
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
@@ -99,7 +100,7 @@ class UserLoginView(View):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'successfully logged in', 'success')
-                return redirect('food:home')
+                return redirect('products:home')
             messages.error(request, 'mobile phone or password is incorrect', 'error')
         return render(request, self.template_name, {'form': form})
 

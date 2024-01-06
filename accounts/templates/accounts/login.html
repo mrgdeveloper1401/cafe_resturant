@@ -16,15 +16,8 @@
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
-                                <div class="form-account-title"><span>*</span> نام کاربری</div>
                                 <div class="form-account-row">
-                                    <input class="input_second input_all" type="text" placeholder=" نام کاربری شما">
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-                                <div class="form-account-title"><span>*</span> کلمه عبور</div>
-                                <div class="form-account-row">
-                                    <input class="input_second input_all" type="password" placeholder=" کلمه عبور شما">
+                                    {{ form }}
                                 </div>
                             </div>
 
@@ -48,7 +41,7 @@
                             <div class="col-12 footer_login_reg text--center">
                                 <p>
                                     <span>کاربر جدید هستید؟</span>
-                                     <a href="register.html">ثبت نام</a>
+                                     <a href="{% url "accounts:signup" %}">ثبت نام</a>
 
                                 </p>
 

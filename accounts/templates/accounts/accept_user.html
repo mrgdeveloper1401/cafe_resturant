@@ -5,9 +5,19 @@
 {% endblock title %}
 
 {% block content %}
-    <form action='' method='POST'>
+<div class="login_box">
+    <form class="" method='post' action=''>
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type='submit' value='ارسال کد'>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 mt-5">
+                <div class="form-account-row">
+                    {{ form }}
+                    <button class='btn big_btn btn-main-masai mt-3' type='submit'>ارسال کد</button>
+                </div>
+            </div>
+        </div>
     </form>
+
+
+</div>
 {% endblock content %}
