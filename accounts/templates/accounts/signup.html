@@ -1,32 +1,14 @@
 {% extends "base/base.html" %}
 
 {% block title %}
-    <title>signup</title>
+<title></title>
 {% endblock title %}
 
 {% block content %}
-<section class="register-page section-b-space">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="title pt-0">ساخت اکانت</h3>
-                <div class="theme-card">
-
-                    <form class="theme-form" method='POST' action=''>
-                        {% csrf_token %}
-                        {{ form }}
-                        <button type='submit' class="btn btn-solid w-auto" name='signup'>ساخت حساب</button>
-                    </form>
-                    
-                    <div class="col-lg-6 right-login">
-                        <h3 class="title">کاربر جدید</h3>
-                        <div class="theme-card authentication-right">
-                            <h6 class="title-font">از قبل حساب دارم</h6>
-                            <p>در عوض اگر حساب دارید میتوانید وارد حساب خود شوید</p><a href="{% url "accounts:login" %}" class="btn btn-solid">ورود حساب کاربری</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<form action='' method='post'>
+    {% csrf_token %}
+    {{ form }}
+    <input type='submit' value='ورود'>
+</form> </br>
+<a href='{% url "accounts:login" %}'>اگر حساب داردی روی این جا کلیک کنید</a>
 {% endblock content %}

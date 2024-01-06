@@ -62,3 +62,6 @@ class ProfileForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class':'form-control col-md-6', 'placeholder':'نام خانوادگی'}),
             'email': forms.EmailInput(attrs={'class':'form-control col-md-6', 'placeholder':'ایمیل'}),
             }
+
+class PasswordResetForm(forms.Form):
+    mobile_phone = forms.CharField(max_length=11, widget=forms.TextInput())

@@ -175,3 +175,11 @@ AUTH_USER_MODEL = 'accounts.users'
 # # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # STORAGES = {}
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'vtccewsfulkaotuo'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'reserv food'

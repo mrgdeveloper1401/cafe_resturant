@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.urls import reverse_lazy
 from django.views import View
 from .models import users
-from .form import UserSignupForm, Loginform, AcceptUserForm, ProfileForm
+from .form import UserSignupForm, Loginform, AcceptUserForm, ProfileForm, PasswordResetForm
 from random import randint
 from caffe.utils import send_otp_code
 from .models import OtpCode
 from datetime import timedelta
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordResetConfirmView
 
 
 class UserSignupView(View):
@@ -100,6 +102,25 @@ class UserLoginView(View):
                 return redirect('food:home')
             messages.error(request, 'mobile phone or password is incorrect', 'error')
         return render(request, self.template_name, {'form': form})
+
+
+class PasswordResetV(PasswordResetView):
+    template_name = 'accounts/password_reset_view.html'
+    success_url = reverse_lazy('accounts:password_reset_done')
+    email_template_name = 'password_reset_email.html'
+
+
+class PasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'accounts/password_reset_done.html'
+
+
+class PasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'accounts/password_reset_confirm.html'
+    success_url = reverse_lazy('accounts:password_reset_complete')
+
+
+class PasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'accounts/password_reset_complete.html'
 
 
 class ProfileView(LoginRequiredMixin, View):
