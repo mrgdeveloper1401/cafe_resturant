@@ -20,3 +20,9 @@ class ProductDetailsView(View):
 def category_partial(request, *args, **kwargs):
     category = Category.objects.filter(is_active=True)
     return render(request, 'food/category_partial.html', {'category': category})
+
+def site_header(request, *args, **kwargs):
+    return render(request, 'food/site_header.html')
+
+def site_footer(request, *args, **kwargs):
+    return render(request, 'food/site_footer.html')
