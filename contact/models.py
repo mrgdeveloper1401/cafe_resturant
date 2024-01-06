@@ -3,7 +3,7 @@ from core.models import Create, Update
 from django.utils.translation import gettext_lazy as _
 
 
-class Contact(Create, Update):
+class WaysofCommunication(Create, Update):
     landing_phone = models.CharField(_('شماره ثابت'), max_length=12, blank=True, null=True)
     mobile_phone = models.CharField(_('شماره همراه'), max_length=11)
     email = models.EmailField(_('ایمیل'), max_length=100)
@@ -21,11 +21,12 @@ class Contact(Create, Update):
 
 
 class ContactUs(Create, Update):
-    email = models.EmailField(_('ایمیل'), max_length=255, blank=True, null=True)
-    mobile_phone = models.CharField(_('شماره موبایل'), max_length=11, blank=True, null=True)
-    description =models.TextField(_('توضحات'))
-    location = models.CharField(_('محل شعبه'), max_length=255, blank=True, null=True)
-    is_active = models.BooleanField(_('is_active'), default=True)
+    first_name = models.CharField(_('نام'), max_length=100)
+    last_name = models.CharField(_("نام خانوادگی"), max_length=100)
+    mobile_phone = models.CharField(_("شماره همراه"), max_length=11, blank=True, null=True)
+    email = models.EmailField(_("ایمیل"), max_length=100)
+    body = models.TextField(_("متن"))
+    be_answered = models.BooleanField(_('پاسخ به صورت پیامک به من اعلام شود'), default=False)
     
     class Meta:
         db_table = 'contact_us'

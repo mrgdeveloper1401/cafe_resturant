@@ -9,8 +9,15 @@ class HomeView(View):
 
 class ProductListView(View):
     def get(self, request):
-        product = Product.objects.all()
+        product = Product.objects.filter(is_active=True)
         return render(request, 'products/all_products.html', {'product': product})
+
+
+class ProductFuturedView(View):
+    def get(self, request, *args, **kwargs):
+        product_futured = Product.objects.filter(is_active=True).order_by('-sell_price')[:5]
+        return render(request, 'products/futured_products.html', {'product_futured': product_futured})
+
 
 class ProductDetailsView(View):
     def get(self, request, *args, **kwargs):

@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+
+{% load render_partial %}
+
+{% block title %}
+    <title>contact us</title>
+{% endblock title %}
+
+{% block content %}
+<main class="cart-page default ">
+    <div class="container">
+        <div class="row">
+            
+            <div class="contact_us_content col-12 mx-auto">
+                <header class="card-header">
+                    <h3 class="card-title"><span>تماس با ما</span></h3>
+                </header>
+                <div class="account-box contact_us_page">
+                
+                    <div class="account-box-content">
+                        <form method='POST' action=''>
+                            {% csrf_token %}
+                            <div class='form-account-rwo'>
+                                <div class="col-md-6 col-sm-12 form_send_re  ">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-account-row">
+                                                {{ form }}
+                                                <button type="submit" class="btn big_btn btn-main-masai">ارسال</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        {% render_partial 'contact.views.WaysOfCommunication' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock content %}

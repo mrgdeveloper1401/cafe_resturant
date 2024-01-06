@@ -1,0 +1,66 @@
+{% load static %}
+
+{% block content %}
+<div class="col-12">
+    <div class="row">
+        <div class="col-12">
+            <div class="widget widget-product card border_all bglight pad_time_prod" id="shegeft_1">
+                <header class="card-header">
+                    <h3 class="card-title">
+                        <span>
+                            <img src="/static/img/shegeft_1.png">
+                        </span>
+                    </h3>
+                    <div class="countdown-timer" countdown="" data-date="06 12 2023 20:20:22">
+                        <ul class="text_countdown">
+                            <li data-days="" class="number_countdown">0</li>
+                            <li>روز</li>
+                        </ul>
+                        <ul class="text_countdown">
+                            <li data-hours="" class="number_countdown">0</li>
+                            <li>ساعت</li>
+                        </ul>
+                        <ul class="text_countdown">
+                            <li data-minutes="" class="number_countdown">0</li>
+                            <li>دقیقه</li>
+                        </ul>
+                        <ul class="text_countdown">
+                            <li data-seconds="" class="number_countdown">0</li>
+                            <li>ثانیه</li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="product-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag">
+                                    
+                {% for fp in product_futured %}
+                    <div class="item">
+                        <a href="{% url "products:product_detail" fp.slug %}">
+                            <img src="{{ fp.image.image.url }}" class="img-fluid" alt="">
+                        </a>
+                        <h2 class="product_title">
+                            <a href="single-product.html">{{ fp.product_name }}</a>
+                        </h2>
+                        <div class="price">
+                        {% comment %} <del><span>290,000<span>تومان</span></span></del> {% endcomment %}
+                        {% comment %} <span class="discount_badge">2%</span> {% endcomment %}
+                        <span>{{ fp.sell_price }} تومان </span>
+                        {% comment %} <ins><span>180,000<span>تومان</span></span></ins> {% endcomment %}
+                        </div>
+                    </div>
+                {% endfor %} 
+                        
+                    
+                    
+                    
+                    
+             
+
+            </div>
+        </div>
+    </div>
+
+ 
+   
+   
+</div>
+{% endblock content %}

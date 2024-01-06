@@ -38,6 +38,7 @@ CREATEAPP = [
     'core.apps.CoreConfig',
     'images.apps.ImagesConfig',
     'products.apps.ProductsConfig',
+    'contact.apps.ContactConfig',
 ]
 
 INSTALLED_APPS = [
