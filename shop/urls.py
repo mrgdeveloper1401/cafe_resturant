@@ -1,5 +1,5 @@
 """
-URL configuration for caffe project.
+URL configuration for shop project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -23,8 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls', namespace='accounts')),
-    path('', include('contact.urls', namespace='contacts')),
-    path('', include('food.urls', namespace='food')),
+    path('', include('products.urls', namespace='products')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

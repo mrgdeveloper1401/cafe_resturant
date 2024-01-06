@@ -7,7 +7,7 @@ from core.models import Create, Update
 from .managers import UserManagers
 
 
-class users(AbstractBaseUser, PermissionsMixin, Create, Update):
+class User(AbstractBaseUser, PermissionsMixin, Create, Update):
     first_name = models.CharField(_('نام'), max_length=100)
     last_name = models.CharField(_('نام خانوادگی'), max_length=100)
     email = models.EmailField(_('ایمیل'), unique=True, max_length=255, blank=True, null=True)
@@ -53,7 +53,7 @@ class users(AbstractBaseUser, PermissionsMixin, Create, Update):
 
 
 
-# model send code for users
+# model send code for User
 class OtpCode(models.Model):
     mobile_phone = models.CharField(_('شماره موبایل'), max_length=11, unique=True)
     code = models.PositiveIntegerField()
@@ -69,7 +69,7 @@ class OtpCode(models.Model):
 
 
 class UserAddress(Create, Update):
-    user = models.ForeignKey(users, on_delete=models.PROTECT, related_name='user_address', verbose_name=_('ادرس کاربر'))
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user_address', verbose_name=_('ادرس کاربر'))
     title = models.CharField(_('عنوان ادرس'), max_length=100, blank=True, null=True)
     address = models.TextField(_('آدرس'))
     postal_code = models.CharField(_('کد پستی'), max_length=11, unique=True)

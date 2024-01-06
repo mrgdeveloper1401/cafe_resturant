@@ -1,11 +1,11 @@
 from django import forms
-from .models import users
+from .models import User
 from django.utils.translation import gettext_lazy as _
 
 
 class UserSignupForm(forms.ModelForm):
     class Meta:
-        model = users
+        model = User
         fields = ('mobile_phone', 'password')
         
         widgets = {
@@ -44,7 +44,7 @@ class AcceptUserForm(forms.Form):
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model = users
+        model = User
         fields = (
             'first_name',
             'last_name',

@@ -3,10 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import View
-from .models import users
+from .models import User
 from .form import UserSignupForm, Loginform, AcceptUserForm, ProfileForm, PasswordResetForm
 from random import randint
-from caffe.utils import send_otp_code
+from shop.utils import send_otp_code
 from .models import OtpCode
 from datetime import timedelta
 from django.utils import timezone
@@ -58,7 +58,7 @@ class AcceptUserView(View):
             after_time = timezone.now() + timedelta(seconds=120)
             if int(cd['code']) == otp_code.code:
                 if timezone.now() < after_time:
-                    users.objects.create_user(
+                    User.objects.create_user(
                         mobile_phone=user_session['mobile_phone'],
                         password=user_session['password']
                     )
@@ -131,7 +131,7 @@ class PasswordResetCompleteView(PasswordResetCompleteView):
 
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        profile = get_object_or_404(users, pk=kwargs['pk'])
+        profile = get_object_or_404(User, pk=kwargs['pk'])
         return render(request, 'accounts/profile.html', {'profile': profile})
 
 

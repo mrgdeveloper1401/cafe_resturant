@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PannelConfig(AppConfig):
+class ProductsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'pannel'
+    name = 'products'
