@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'coupon_management',
+    'django_render_partial',
     # 'storages',
     *CREATEAPP
 ]
