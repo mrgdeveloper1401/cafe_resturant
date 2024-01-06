@@ -103,6 +103,12 @@ class UserLoginView(View):
             messages.error(request, 'mobile phone or password is incorrect', 'error')
         return render(request, self.template_name, {'form': form})
 
+class Logout(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        messages.success(request, 'successfully logged out','success')
+        return redirect('accounts:login')
+
 
 class PasswordResetV(PasswordResetView):
     template_name = 'accounts/password_reset_view.html'
