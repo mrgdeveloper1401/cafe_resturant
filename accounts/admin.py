@@ -7,7 +7,7 @@ from .models import User, OtpCode, Job
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {"fields": ("mobile_phone", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "email", 'postal_code', 'nation_code', 'birth_day', 'address', 'bio', 'job')}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "email", 'postal_code', 'nation_code', 'birth_day', 'address', 'bio', 'job', 'image')}),
         (
             _("Permissions"),
             {
@@ -41,7 +41,7 @@ class UserAdmin(BaseUserAdmin):
         'job',
     )
     readonly_fields = ('create_at', 'update_at', 'last_login', 'is_active', 'is_staff', 'is_superuser')
-
+    raw_id_fields = ('image',)
 
 @admin.register(OtpCode)
 class OtpCodeAdmin(admin.ModelAdmin):

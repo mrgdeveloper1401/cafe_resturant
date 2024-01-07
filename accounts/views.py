@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import View
 from .models import User, Job
-from .form import UserSignupForm, Loginform, AcceptUserForm, ProfileForm, PasswordResetForm
+from .form import UserSignupForm, Loginform, AcceptUserForm, ProfileForm, PasswordResetForm, ProfileEditform
 from random import randint
 from shop.utils import send_otp_code
 from .models import OtpCode
@@ -139,7 +139,7 @@ class ProfileView(LoginRequiredMixin, View):
 
 
 class ProfileEditView(LoginRequiredMixin, View):
-    form_class = ProfileForm
+    form_class = ProfileEditform
     def get(self, request, *args, **kwargs):
         form = self.form_class(instance=request.user)
         return render(request, 'accounts/profile_edit.html', {'profile': form})

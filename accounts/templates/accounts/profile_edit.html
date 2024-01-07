@@ -1,0 +1,69 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+    <title></title>
+{% endblock title %}
+
+{% block content %}
+<main class="profile-user-page default space-top-30">
+    <div class="container">
+        <div class="row">
+           
+           <div class="main-content login_content col-xl-9 col-lg-8 col-md-12 order-2 mx-auto">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <header class="card-header">
+                                <h3 class="card-title"><span>اطلاعات حساب شخصی</span></h3>
+                            </header>
+                            <div class="login_box">
+
+
+
+                                <form class="" method='POST' action=''>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-account-title"><span>*</span> نام کاربری</div>
+                                            <div class="form-account-row">
+                                                {{ profile }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <header class="card-header">
+                                <h3 class="card-title"><span>اطلاعات حساب بانکی</span></h3>
+                            </header>
+                            <div class="login_box">
+                                <form class="">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-account-title"><span>(اختیاری)</span> شماره کارت</div>
+                                            <div class="form-account-row">
+                                                <input class="input_second input_all" type="text" placeholder=" شماره کارت شما">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-account-title"><span>(اختیاری)</span> شماره شبا</div>
+                                            <div class="form-account-row">
+                                                <input class="input_second input_all" type="password" placeholder=" شماره شبا شما">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-12 text--center">
+                            <a href="#" class="btn big_btn btn-main-masai">ثبت اطلاعات کاربری  </a>
+                        </div>
+                    </div>
+                </div>
+           
+        </div>
+    </div>
+</main>
+{% endblock content %}

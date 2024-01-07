@@ -74,3 +74,62 @@ class ProfileForm(forms.ModelForm):
 
 class PasswordResetForm(forms.Form):
     mobile_phone = forms.CharField(max_length=11, widget=forms.TextInput())
+
+
+class ProfileEditform(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'email',
+            'mobile_phone',
+            'postal_code',
+            'nation_code',
+            'birth_day',
+            'job'
+            
+        )
+        
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class':'input_second input_all', 'placeholder':'اطفا نام خود را وارد کنید'}),
+            'last_name': forms.TextInput(attrs={'class':'input_second input_all', 'placeholder':'اطفا نام خود را وارد کنید'}),
+            'email': forms.EmailInput(attrs={'class':'input_second input_all', 'placeholder':'اطفا نام خود را وارد کنید'}),
+            'mobile_phone': forms.NumberInput(attrs={'class':'input_second input_all', 'placeholder':'اطفا نام خود را وارد کنید'}),
+            'nation_code': forms.TextInput(attrs={'class':'input_second input_all', 'placeholder':'اطفا نام خود را وارد کنید'}),
+            'postal_code': forms.TextInput(attrs={'class':'input_second input_all', 'placeholder':'اطفا نام خود را وارد کنید'}),
+            'birth_day': forms.DateInput(attrs={'class':'input_second input_all', 'placeholder':'اطفا نام خود را وارد کنید'}),
+            'job': forms.MultipleHiddenInput(attrs={'class':'input_second input_all', 'placeholder':'اطفا نام خود را وارد کنید'}),
+
+        }
+        
+        error_messages = {
+            'first_name': {
+              'required': 'لطفا نام خود را وارد کنید'
+            },
+            'last_name': {
+              'required': 'لطفا نام خانوادگی خود را وارد کنید'
+            },
+            'email': {
+              'required': 'لطفا ایمیل خود را وارد کنید',
+              'unique': 'این ایمیل از قبل وجود دارد',
+            },
+            'nation_code': {
+             'required': 'لطفا کد ملی خود را وارد کنید',
+             'unique': 'این کد ملی از قبل وجود دارد',
+            },
+            'birth_day': {
+             'required': 'لطفا تاریخ تولد خود را وارد کنید'
+            },
+            'job': {
+            'required': 'لطفا شغل خود را وارد کنید'
+            },
+            'postal_code': {
+            'required': 'لطفا کد پستی خود را وارد کنید',
+            'postal_code': 'این کد پستی از قبل وجود دارد'
+            },
+            'mobile_phone': {
+             'required': 'لطفا شماره همراه خود را وارد کنید',
+             'unique': 'این شماره همراه از قبل وجود دارد',
+            },
+        }
