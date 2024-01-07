@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import User, OtpCode, UserAddress
+from .models import User, OtpCode, Job
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {"fields": ("mobile_phone", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "email", 'address', 'bio')}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "email", 'postal_code', 'nation_code', 'birth_day', 'address', 'bio', 'job')}),
         (
             _("Permissions"),
             {
@@ -38,6 +38,7 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = (
         "groups",
         "user_permissions",
+        'job',
     )
     readonly_fields = ('create_at', 'update_at', 'last_login', 'is_active', 'is_staff', 'is_superuser')
 
@@ -49,11 +50,7 @@ class OtpCodeAdmin(admin.ModelAdmin):
     search_fields = ('mobile_phone', 'code')
 
 
-@admin.register(UserAddress)
-class UserAddressAdmin(admin.ModelAdmin):
-    list_display = ('user', 'title', 'address', 'postal_code','mobile_phone')
-    list_filter = ('create_at', 'update_at')
-    date_hierarchy = 'create_at'
-    list_per_page = 30
-    readonly_fields = ('create_at', 'update_at')
-    raw_id_fields = ('user',)
+@admin.register(Job)
+class JobAdmin(admin.ModelAdmin):
+    list_display = ('job_name',)
+    list_per_page = 20

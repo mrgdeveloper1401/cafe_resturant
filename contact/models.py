@@ -26,6 +26,7 @@ class ContactUs(Create, Update):
     mobile_phone = models.CharField(_("شماره همراه"), max_length=11, blank=True, null=True)
     email = models.EmailField(_("ایمیل"), max_length=100)
     body = models.TextField(_("متن"))
+    image = models.ImageField(_("عکس"), upload_to='contact_us/%Y/%M/%d', blank=True, null=True)
     be_answered = models.BooleanField(_('پاسخ به صورت پیامک به من اعلام شود'), default=False)
     
     class Meta:

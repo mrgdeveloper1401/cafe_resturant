@@ -52,7 +52,9 @@
                                 <div class="col-sm-12 col-md-6">
                                     <p>
                                         <span class="title">شغل :</span>
-                                        <span>توسعه نرم افزار و برنامه نویسی</span>
+                                    {% for j in jobs %}
+                                        <span>{{ j.job_name }}{% if not forloop.last %},{% endif %}</span>
+                                    {% endfor %}
                                     </p>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
@@ -64,13 +66,19 @@
                                 <div class="col-sm-12 col-md-6">
                                     <p>
                                         <span class="title">کد ملی :</span>
-                                        <span>{{ profile.user_address.nation_code }}</span>
+                                        <span>{{ profile.nation_code }}</span>
                                     </p>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <p>
                                         <span class="title">کد پستی :</span>
-                                        <span>{{ profile.user_address.postal_code }}</span>
+                                        <span>{{ profile.postal_code }}</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <p>
+                                        <span class="title">تاریخ تولد  :</span>
+                                        <span>{{ profile.birth_day }}</span>
                                     </p>
                                 </div>
                                 <div class="col-12 text-center">

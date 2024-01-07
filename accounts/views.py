@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import View
-from .models import User
+from .models import User, Job
 from .form import UserSignupForm, Loginform, AcceptUserForm, ProfileForm, PasswordResetForm
 from random import randint
 from shop.utils import send_otp_code
@@ -133,7 +133,9 @@ class PasswordResetCompleteView(PasswordResetCompleteView):
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         profile = get_object_or_404(User, pk=kwargs['pk'])
-        return render(request, 'accounts/profile.html', {'profile': profile})
+        job = profile.job.all()
+        context = {'profile': profile, 'jobs': job}
+        return render(request, 'accounts/profile.html', context=context)
 
 
 class ProfileEditView(LoginRequiredMixin, View):

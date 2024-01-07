@@ -12,7 +12,8 @@ class ContactUsForm(forms.ModelForm):
       'last_name': forms.TextInput(attrs={'class': 'input_second input_all'}),
       'email': forms.EmailInput(attrs={'class': 'input_second input_all'}),
       'body': forms.Textarea(attrs={'class': 'input_second input_all input_textarea text-right'}),
-      'be_answered': forms.CheckboxInput,
+      'be_answered': forms.CheckboxInput(attrs={'class': 'm-3'}),
+      'image': forms.FileInput(),
       'mobile_phone': forms.TextInput(attrs={'class': 'input_second input_all'}),
     }
     
@@ -34,3 +35,5 @@ class ContactUsForm(forms.ModelForm):
         'required': 'ایمیل اجباری میباشد'
       }
       }
+
+    enctype = 'multipart/form-data'

@@ -2,7 +2,7 @@ from datetime import timedelta, timezone
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.mail import send_mail
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from core.models import Create, Update
 from .managers import UserManagers
 
@@ -16,6 +16,11 @@ class User(AbstractBaseUser, PermissionsMixin, Create, Update):
     is_staff = models.BooleanField(_('دسترسی کارمندی'), default=False, editable=False)
     bio = models.TextField(_('درباره خودت'), blank=True, null=True)
     address = models.TextField(_('آدرس کامل'), blank=True, null=True)
+    postal_code = models.CharField(_('کد پستی'), max_length=11, unique=True, null=True, blank=True)
+    nation_code = models.CharField(_('کد ملی'), max_length=11, blank=True, null=True, unique=True)
+    image = models.ForeignKey('images.Images', on_delete=models.PROTECT, blank=True, null=True)
+    birth_day = models.DateField(_("تاریخ تولد"), blank=True, null=True)
+    job = models.ManyToManyField('Job', related_name='users', blank=True)
     
     objects = UserManagers()
     
@@ -51,6 +56,7 @@ class User(AbstractBaseUser, PermissionsMixin, Create, Update):
         expiration_date = self.create_at
         if self.is_active:
             return self.is_active and timezone.now() <= expiration_date
+    
 
 
 
@@ -69,20 +75,13 @@ class OtpCode(models.Model):
         verbose_name_plural = _('کد تایید')
 
 
-class UserAddress(Create, Update):
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user_address', verbose_name=_('ادرس کاربر'))
-    title = models.CharField(_('عنوان ادرس'), max_length=100, blank=True, null=True)
-    address = models.TextField(_('آدرس'))
-    postal_code = models.CharField(_('کد پستی'), max_length=11, unique=True)
-    mobile_phone = models.CharField(_("موبایل"), max_length=11, unique=True)
-    nation_code = models.CharField(_('کد ملی'), max_length=11, blank=True, null=True, unique=True)
-    # TODO
-    # location = models.GenericIPAddressField()
+class Job(Create, Update):
+    job_name = models.CharField(_('نام شغل'), max_length=150)
     
     def __str__(self) -> str:
-        return self.address
+        return self.job_name
     
     class Meta:
-        db_table = 'user_address'
-        verbose_name = _('آدرس')
-        verbose_name_plural = _('آدرس ها')
+        db_table = 'job'
+        verbose_name = _('شغل')
+        verbose_name_plural = _('شغل ها')
