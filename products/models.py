@@ -26,6 +26,7 @@ class Product(Create, Update):
     category = models.ManyToManyField(Category, related_name='product')
     brand = models.ForeignKey('Brand', on_delete=models.PROTECT, related_name='product_brand', blank=True, null=True)
     product_name = models.CharField(_('نام غذا'), max_length=255)
+    en_product_name = models.CharField(_('نام انگلیسی'), max_length=255, blank=True, null=True)
     slug = models.SlugField(_('slug'), max_length=255, unique=True, allow_unicode=True)
     product_number = models.PositiveSmallIntegerField(_('تعداد کالاهای موجود'), default=0)
     image = models.ForeignKey('images.Images', on_delete=models.PROTECT, related_name='product_images', blank=True, null=True)
@@ -51,7 +52,7 @@ class Product(Create, Update):
     available = AvailableManager()
     
     def get_absolute_url(self):
-        return reverse_lazy("product:product_details", kwargs={"slug": self.slug})
+        return reverse_lazy("products:product_detail", kwargs={"slug": self.slug})
     
     class Meta:
         db_table = 'product'

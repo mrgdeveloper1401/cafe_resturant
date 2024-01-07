@@ -20,7 +20,7 @@ class ProductAdmin(admin.ModelAdmin):
         (
             'محصول',
             {
-                'fields': ('product_name', 'slug', 'image', 'description'),
+                'fields': ('en_product_name', 'product_name', 'slug', 'image', 'description'),
             }
         ),
         (
@@ -36,15 +36,16 @@ class ProductAdmin(admin.ModelAdmin):
             }
         )
     ]
-    list_display = ('product_name', 'type_category', 'product_number', 'sell_price', 'image', 'is_active', 'is_get_out', 'is_avaliable')
+    list_display = ('en_product_name', 'product_name', 'type_category', 'product_number', 'sell_price', 'image', 'is_active', 'is_get_out', 'is_avaliable')
     search_fields = ('product_name', )
     list_filter = ('is_active', 'is_get_out', 'create_at', 'update_at', 'category', 'type_category')
     date_hierarchy = 'create_at'
     list_per_page = 20
     list_editable = ('is_active', 'is_get_out')
-    prepopulated_fields = {'slug': ('product_name', )}
+    prepopulated_fields = {'slug': ('en_product_name', )}
     raw_id_fields = ('image',)
     filter_horizontal = ('category',)
+    list_display_links = ('en_product_name', 'product_name')
 
 
 @admin.register(Category)

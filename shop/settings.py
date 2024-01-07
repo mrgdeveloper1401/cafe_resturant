@@ -182,3 +182,6 @@ EMAIL_HOST_USER = 'vtccewsfulkaotuo'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'e-commers shop'
+
+# change expride data session
+# SESSION_COOKIE_AGE = 10000000000

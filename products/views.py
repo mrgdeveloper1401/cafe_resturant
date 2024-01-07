@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from .models import Product, Category
 from django.views import View
 from django.views.generic.base import TemplateView
@@ -8,11 +9,12 @@ class HomeView(TemplateView):
     template_name = 'products/index.html'
 
 
-class ProductListView(View):
-    def get(self, request):
-        product = Product.objects.filter(is_active=True)
-        return render(request, 'products/all_products.html', {'product': product})
-
+class ProductListView(ListView):
+    model = Product
+    queryset = Product.objects.filter(is_active=True).order_by('-create_at')
+    template_name = 'products/all_products.html'
+    context_object_name = 'all_products'
+    paginate_by = 2
 
 class ProductFuturedView(ListView):
     model = Product
@@ -43,3 +45,16 @@ def site_header(request, *args, **kwargs):
 
 def site_footer(request, *args, **kwargs):
     return render(request, 'products/site_footer.html')
+
+
+# class AddProductFavouriteView(View):
+#     def post(self, request, *args, **kwargs):
+#         product_id = request.POST['product_id']
+#         product = get_object_or_404(Product, id=product_id)
+#         request.session['product_favourite'] = {
+#             'product_id': product.id,
+#             'product_name': product.en_product_name,
+#             'category': product.category,
+#             'price': product.sell_price
+#         }
+#         return redirect(product.get_absolute_url())

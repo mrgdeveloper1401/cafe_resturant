@@ -1,5 +1,7 @@
 {% extends "base/base.html" %}
 
+{% load static %}
+
 {% block title %}
     <title>{{ details_product.slug }}</title>
 {% endblock  %}
@@ -31,23 +33,28 @@
                     <div class="row product_main_details">
                         <div class="col-lg-5 col-md-6 col-sm-12">
                             <div class="product-gallery default">
-                                <img class="main_img_gallery" src="assets/img/product_img/single/main.jpg">
+                                <img class="main_img_gallery" src="{{ details_product.image.image.url }}" alt=''>
                                 <section class="testimonial py-3" id="testimonial">
                                     <div class="container">
                                         <div class="row gallery">
-                                            <div class="col-4 col-md-3 pd"><a href="assets/img/product_img/single/1.jpg" rel="prettyPhoto[gallery1]"><img src="assets/img/product_img/single/1.jpg" class="img-thumb" alt="نمایشگر همیشه روشن"></a></div>
-                                            <div class="col-4 col-md-3 pd"><a href="assets/img/product_img/single/2.jpg" rel="prettyPhoto[gallery1]"><img src="assets/img/product_img/single/2.jpg" class="img-thumb" alt="سخت تر از همه"></a></div>
-                                            <div class="col-4 col-md-3 pd"><a href="assets/img/product_img/single/3.jpg" rel="prettyPhoto[gallery1]"><img src="assets/img/product_img/single/3.jpg" class="img-thumb" alt="یک دوربین در یک کلاس به تنهایی"></a></div>
-                                            <div class="col-4 col-md-3 pd"><a href="assets/img/product_img/single/4.jpg" rel="prettyPhoto[gallery1]"><img src="assets/img/product_img/single/4.jpg" class="img-thumb" alt="حریم خصوصی"></a></div>
-
+                                            <div class="col-4 col-md-3 pd"><a href="#" rel="prettyPhoto[gallery1]"><img src="#" class="img-thumb" alt=""></a></div>
                                         </div>
                                     </div>
                                 </section>
                             </div>
                             <ul class="gallery-options">
-                                <li>
-                                    <button class="add-favorites favorites2"><i class="fa fa-heart"></i></button>
-                                </li>
+                                {% comment %} <form action='{% url "products:product_favorite" %}' method='POST'>
+                                    {% csrf_token %}
+                                    <li>
+                                        <button type='submit' class="add-favorites favorites2">
+                                            <i class="fa fa-heart"></i>
+                                            ثبت در کالای محبوب من</button>
+                                            <input name='product_id' type='hidden' value='{{ details_product.id }}'>
+                                    </li>
+                                </form> {% endcomment %}
+                                <button class='add-favorites favorites2'>
+                                    <i class='fa fa-heart'></i>
+                                </button>
                                 <li>
                                     <button class="favorites2" data-toggle="modal" data-target="#myModal"><i class="fa fa-share-alt"></i></button>
                                 </li>
@@ -91,7 +98,7 @@
                                     {% endif %}
                                     
                                 </h2>
-                                <hr class="hr-text" data-content="دو سیم‌ کارت ظرفیت 1 ترابایت و 6 گیگابایت رم ">
+                                <hr class="hr-text" data-content="{{ details_product.slug }}">
                                 <div class="row">
                                     <div class="col-6">
                                         <ul class="list-group space-15">
@@ -251,7 +258,7 @@
                                                     <li>
                                                         <div class="comment-body">
                                                             <div class="comment-author">
-                                                                <img alt="" src="assets/img/profile/1.png" class="avatar"><span class="star4">4.3</span><div class="text-h5">عالی وشیک</div> 
+                                                                <img alt="" src="/static/img/profile/1.png" class="avatar"><span class="star4">4.3</span><div class="text-h5">عالی وشیک</div> 
                                                             </div>
                                                             
                                                             <p>محصول بسیار خوبی است. صفحه‌نمایش با کیفیت فوق‌العاده، دوربین‌های با کیفیت و روانی کارکرد دستگاه همگی از ویژگی‌های مثبت این محصول هستند.</p>
@@ -270,7 +277,7 @@
                                                     <li>
                                                         <div class="comment-body">
                                                             <div class="comment-author">
-                                                                <img alt="" src="assets/img/profile/2.png" class="avatar"><span class="star3">3.2</span><div class="text-h5">جنس ضعیف</div>
+                                                                <img alt="" src="/static/img/profile/2.png" class="avatar"><span class="star3">3.2</span><div class="text-h5">جنس ضعیف</div>
                                                             </div>
 
                                                             <p>
